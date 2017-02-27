@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-   <title>School Donations Dashboard</title>
+   <title>School Donations Dashboards</title>
    <link rel="stylesheet" href="{{ url_for ('static',
          filename='lib/css/bootstrap.min.css')}}">
    <link rel="stylesheet" href="{{ url_for ('static',
@@ -113,7 +113,7 @@
                    vertical-align: middle;
                    text-align: center;
                    padding-top: 12px;
-                   padding-bottom: 0px;">
+                   padding-bottom: 1px;">
                    <div id="number-projects-nd"></div>
                </div>
            </div>
@@ -137,15 +137,15 @@
 </div>
 
 <hr>
-<p class="small text-muted"> Data viz &#9829; from Code Institute</a></p>
+<p class="small text-muted"> Data viz &#9829; from Code Institute<a></a></p>
 
-</div>
 <script src="{{ url_for ('static', filename='lib/js/jquery.min.js')}}"></script>
 <script src="{{ url_for ('static', filename='lib/js/bootstrap.min.js')}}"></script>
 <script src="{{ url_for ('static', filename='lib/js/crossfilter.js')}}"></script>
 <script src="{{ url_for ('static', filename='lib/js/d3.js')}}"></script>
 <script src="{{ url_for ('static', filename='lib/js/dc.js')}}"></script>
 <script src="{{ url_for ('static', filename='lib/js/queue.js')}}"></script>
+
 <script src="{{ url_for ('static', filename='lib/js/keen.min.js')}}"></script>
 <script src="{{ url_for ('static', filename='js/graph.js')}}"></script>
 </body>
