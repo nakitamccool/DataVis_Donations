@@ -1,9 +1,7 @@
 /**
  * Created by nakita on 27/02/2017.
  */
-/**
- * Created by nakita on 27/02/2017.
- */
+
 queue()
    .defer(d3.json, "/donorsUS/projects")
    .await(makeGraphs);
