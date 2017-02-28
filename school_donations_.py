@@ -16,7 +16,7 @@ FIELDS = {'funding_status': True, 'school_state': True, 'resource_type': True, '
           'date_posted': True, 'total_donations': True, '_id': False}
 
 
-@app.route("/")§
+@app.route("/")
 def index():
     return render_template("index.html")
 
