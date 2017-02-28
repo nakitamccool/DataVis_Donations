@@ -2,6 +2,7 @@ queue()
    .defer(d3.json, "/donorsUS/projects")
    .await(makeGraphs);
 
+
 function makeGraphs(error, projectsJson) {
 
    //Clean projectsJson data
@@ -38,12 +39,17 @@ function makeGraphs(error, projectsJson) {
        return d["funding_status"];
    });
 
+   var primaryAreaOfFocusDim = ndx.dimension(function (d){
+      return d["primary_focus_area"];
+   });
+
 
    //Calculate metrics
    var numProjectsByDate = dateDim.group();
    var numProjectsByResourceType = resourceTypeDim.group();
    var numProjectsByPovertyLevel = povertyLevelDim.group();
    var numProjectsByFundingStatus = fundingStatus.group();
+   var numProjectsByFocusArea = primaryAreaOfFocusDim.group();
    var totalDonationsByState = stateDim.group().reduceSum(function (d) {
        return d["total_donations"];
    });
@@ -68,6 +74,7 @@ function makeGraphs(error, projectsJson) {
    var numberProjectsND = dc.numberDisplay("#number-projects-nd");
    var totalDonationsND = dc.numberDisplay("#total-donations-nd");
    var fundingStatusChart = dc.pieChart("#funding-chart");
+   var FocusAreaChart = dc.rowChart("#primary-area-of-focus-row-chart");
 
 
    selectField = dc.selectMenu('#menu-select')
@@ -124,6 +131,12 @@ function makeGraphs(error, projectsJson) {
        .dimension(fundingStatus)
        .group(numProjectsByFundingStatus);
 
+   FocusAreaChart
+       .width(300)
+       .height(250)
+       .dimension(primaryAreaOfFocusDim)
+       .group(numProjectsByFocusArea)
+       .xAxis().ticks(4);
 
    dc.renderAll();
 }
