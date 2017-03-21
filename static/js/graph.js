@@ -11,7 +11,7 @@ function makeGraphs(error, projectsJson) {
    donorsUSProjects.forEach(function (d) {
        d["date_posted"] = dateFormat.parse(d["date_posted"]);
        d["date_posted"].setDate(1);
-       d["total_donations"] = +d["total_donations"];
+       // No longer needed?? d["total_donations"] = +d["total_donations"];
    });
 
 

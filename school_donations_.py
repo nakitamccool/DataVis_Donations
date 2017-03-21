@@ -6,12 +6,20 @@ import os
 
 app = Flask(__name__)
 
-MONGODB_HOST = 'localhost'
-MONGODB_PORT = 27017
+#*** Configure to run locally ***#
+# MONGODB_HOST = 'localhost'
+# MONGODB_PORT = 27017
+# DBS_NAME = 'donorsUSA'
+# COLLECTION_NAME = 'projects'
+#*** END: Configure to run locally ***#
 
-# MONGODB_URI = os.getenv('MONGODB_URI')
-DBS_NAME = 'donorsUSA'
-COLLECTION_NAME = 'projects'
+#* Congfigure to run on heroku *#
+MONGODB_URI = os.getenv('MONGODB_URI')
+DBS_NAME = os.getenv('MONGO_DB_NAME', 'donorsUSA')
+COLLECTION_NAME = os.getenv('MONGO_COLLECTION_NAME', 'projects')
+#* END Congfigure to run on heroku *#
+
+
 FIELDS = {'funding_status': True, 'school_state': True, 'resource_type': True, 'poverty_level': True,
           'date_posted': True, 'total_donations': True, 'primary_focus_area': True, '_id': False}
 
@@ -23,8 +31,13 @@ def index():
 
 @app.route("/donorsUS/projects")
 def donor_projects():
-    connection = MongoClient(MONGODB_HOST, MONGODB_PORT)
-    # connection = MongoClient(MONGODB_URI)
+    # *** Configure to run locally ***#
+    # connection = MongoClient(MONGODB_HOST, MONGODB_PORT)
+    # *** END: Configure to run locally ***#
+
+    # * Congfigure to run on heroku *#
+    connection = MongoClient(MONGODB_URI)
+    # * END Congfigure to run on heroku *#
     collection = connection[DBS_NAME][COLLECTION_NAME]
     projects = collection.find(projection=FIELDS, limit=55000)
     json_projects = []
