@@ -15,8 +15,8 @@ app = Flask(__name__)
 
 #* Congfigure to run on heroku *#
 MONGODB_URI = os.getenv('MONGODB_URI')
-DBS_NAME = os.getenv('MONGO_DB_NAME', 'donorsUSA')
-COLLECTION_NAME = os.getenv('MONGO_COLLECTION_NAME', 'projects')
+DBS_NAME = os.getenv('MONGO_DB_NAME','donorsUSA')
+COLLECTION_NAME = os.getenv('MONGO_COLLECTION_NAME','projects')
 #* END Congfigure to run on heroku *#
 
 
